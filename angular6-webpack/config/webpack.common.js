@@ -1,7 +1,9 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var helpers = require('./helpers');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const helpers = require('./helpers');
 
 module.exports = {
     entry: {
@@ -10,14 +12,14 @@ module.exports = {
         'app': './src/main.ts'
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js', '.scss', '.css']
     },
     optimization: {
         splitChunks: {
             cacheGroups: {
-                app: { test: "app", name: "app.chunk", chunks: 'all', enforce: true },
-                vendor: { test: "vendor", name: "vendor.chunk", chunks: 'all', enforce: true },
-                polyfills: { test: "polyfills", name: "polyfills.chunk", chunks: 'all', enforce: true }
+                app: { test: "app", name: "app", enforce: true },
+                vendor: { test: "vendor", name: "vendor", enforce: true },
+                polyfills: { test: "polyfills", name: "polyfills", enforce: true }
             }
         }
     },
@@ -61,7 +63,7 @@ module.exports = {
             helpers.root('./src'), // location of your src
             {} // a map of your routes
         ),
-
+        new CleanWebpackPlugin([helpers.root('dist')], process.cwd()),
         new HtmlWebpackPlugin({
             showErrors: true,
             minify: false,

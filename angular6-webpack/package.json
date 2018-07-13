@@ -21,6 +21,7 @@
     "@types/node": "^10.5.2",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^5.2.0",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
@@ -32,14 +33,17 @@
     "karma-jasmine": "^1.1.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.0",
+    "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "null-loader": "^0.1.1",
+    "postcss-loader": "^2.1.6",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "to-string-loader": "^1.1.5",
     "typescript": "^2.9.2",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
@@ -47,8 +51,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --color --progress",
-    "build": "webpack"
+    "start": "webpack-dev-server --color --progress  --env.mode=dev",
+    "build": "webpack -p --progress --env.mode=prod",
+    "build-dev": "webpack -d --progress --env.mode=dev"
   },
   "author": "",
   "license": "ISC"
