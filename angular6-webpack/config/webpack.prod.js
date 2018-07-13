@@ -1,6 +1,6 @@
 const webpackMerge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const ExtractTextPlugin = require('extract-text-webpack-plugin'); /**extract-text-webpack-plugin */
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); /**mini-css-extract-plugin */
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpackCommon = require('./webpack.common.js');
 const helpers = require('./helpers');
@@ -15,7 +15,13 @@ module.exports = webpackMerge(webpackCommon, {
     },
     mode: 'production',
     plugins: [
-        new ExtractTextPlugin({ filename: '[name].bundle.css', disable: false, allChunks: true }),
+        //new ExtractTextPlugin({ filename: '[name].bundle.css', disable: false, allChunks: true }), /**extract-text-webpack-plugin */
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: '[name].bundle.css',
+            chunkFilename: '[name].chunk.css',
+        }), /**mini-css-extract-plugin */
         new UglifyJsPlugin({ sourceMap: true }),
     ],
     performance: {

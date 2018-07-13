@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const ExtractTextPlugin = require('extract-text-webpack-plugin'); /**extract-text-webpack-plugin */
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); /**mini-css-extract-plugin */
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const helpers = require('./helpers');
 
@@ -40,13 +40,20 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
                 use: 'file-loader?name=assets/[name].[hash].[ext]'
             },
+            /**extract-text-webpack-plugin */
+            // {
+            //     test: /\.(css|scss|sass)$/,
+            //     exclude: helpers.root('src', 'app'),
+            //     use: ExtractTextPlugin.extract({
+            //         fallback: "style-loader",
+            //         use: ["css-loader?sourceMap", "sass-loader?sourceMap"]
+            //     })
+            // },
+            /**mini-css-extract-plugin */
             {
                 test: /\.(css|scss|sass)$/,
                 exclude: helpers.root('src', 'app'),
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader?sourceMap", "sass-loader?sourceMap"]
-                })
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(css|scss|sass)$/,

@@ -9,6 +9,6 @@ module.exports = function (env) {
         case 'dev':
         case 'development':
         default:
-           return require('./config/webpack.dev.js');
+            return require('./config/webpack.dev.js');
     }
 }
