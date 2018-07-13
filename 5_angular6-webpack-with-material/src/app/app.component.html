@@ -3,7 +3,51 @@
         <sidebar-comp></sidebar-comp>
         <div id="content">
             <router-outlet></router-outlet>
+
+            <div class="example-container">
+                <mat-form-field hintLabel="Max 10 characters">
+                    <input matInput #input maxlength="10" placeholder="Enter some input">
+                    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Select me">
+                        <mat-option value="option">Option</mat-option>
+                    </mat-select>
+                    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+                </mat-form-field>
+            </div>
+
             <img src="../assets/images/angular.png">
+            <h3>Raised Buttons</h3>
+
+            <div class="button-row">
+                <button mat-raised-button>Basic</button>
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="accent">Accent</button>
+                <button mat-raised-button color="warn">Warn</button>
+                <button mat-raised-button disabled>Disabled</button>
+                <a mat-raised-button routerLink=".">Link</a>
+            </div>
+
+            <h3>Icon Buttons</h3>
+            <div class="button-row">
+                <button mat-icon-button>
+                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                </button>
+                <button mat-icon-button color="primary">
+                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                </button>
+                <button mat-icon-button color="accent">
+                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                </button>
+                <button mat-icon-button disabled>
+                    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                </button>
+            </div>
         </div>
     </div>
 </main>
