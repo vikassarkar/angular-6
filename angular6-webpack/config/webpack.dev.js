@@ -5,7 +5,7 @@ const webpackCommon = require('./webpack.common.js');
 const helpers = require('./helpers');
 
 module.exports = webpackMerge(webpackCommon, {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     output: {
         path: helpers.root('dist'),
         publicPath: '/',
@@ -14,7 +14,7 @@ module.exports = webpackMerge(webpackCommon, {
     },
     mode: 'development',
     plugins: [
-        new ExtractTextPlugin('[name].bundle.css')
+        new ExtractTextPlugin({ filename: '[name].bundle.css', disable: false, allChunks: true })
     ],
     devServer: {
         stats: {

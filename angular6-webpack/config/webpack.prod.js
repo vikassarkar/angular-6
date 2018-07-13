@@ -15,7 +15,7 @@ module.exports = webpackMerge(webpackCommon, {
     },
     mode: 'production',
     plugins: [
-        new ExtractTextPlugin('[name].bundle.css'),
+        new ExtractTextPlugin({ filename: '[name].bundle.css', disable: false, allChunks: true }),
         new UglifyJsPlugin({ sourceMap: true }),
     ],
     performance: {
